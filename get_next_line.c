@@ -14,14 +14,13 @@
 
 char	*ft_select_first(char *line)
 {
-	int		i;
+	int	i;
 	char	*dest;
 
-	i = 0;
-	if (!line[i])
+	i = -1;
+	if (!line[i + 1])
 		return (NULL);
-	while (line[i] && line[i] != '\n')
-		i++;
+	while (++i && line[i] != '\n');
 	dest = malloc(i + 2);
 	if (!dest)
 	{
@@ -29,11 +28,8 @@ char	*ft_select_first(char *line)
 		return (NULL);
 	}
 	i = 0;
-	while (line[i] && line[i] != '\n')
-	{
-		dest[i] = line[i];
-		i++;
-	}
+	while (line[i] != '\n')
+		dest[i++] = line[++i];
 	if (line[i] == '\n')
 		dest[i++] = '\n';
 	dest[i] = ('\0');
@@ -42,13 +38,14 @@ char	*ft_select_first(char *line)
 
 char	*ft_select_next(char *line)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	*buff;
 
-	i = 0;
-	while (line[i] && line[i] != '\n')
-		i++;
+	i = -1;
+	if (!line[i + 1])
+		return (NULL);
+	while (++i && line[i] != '\n');
 	if (!line[i])
 	{
 		free(line);
@@ -63,7 +60,7 @@ char	*ft_select_next(char *line)
 	j = 0;
 	while (line[i])
 		buff[j++] = line[++i];
-	buff[j] = 0;
+	buff[j] = ('\0');
 	free(line);
 	return (buff);
 }
@@ -101,7 +98,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	save = ft_read_line(fd, save, buff);
+	save = ft_get_line(fd, save, buff);
 	if (!save)
 		return (NULL);
 	line = ft_select_first(save);
