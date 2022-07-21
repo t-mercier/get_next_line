@@ -26,11 +26,8 @@ char	*ft_select_first(char *save)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (save[i] && save[i] != '\n')
-	{
-		line[i] = save[i];
-		i++;
-	}
+	while (save[i] != '\n')
+		line[i++] = save[++i];
 	if (save[i] == '\n')
 		line[i++] = '\n';
 	line[i] = ('\0');
@@ -39,13 +36,12 @@ char	*ft_select_first(char *save)
 
 char	*ft_select_after(char *save)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 	char	*str;
 
-	i = 0;
-	while (save[i] && save[i] != '\n')
-		i++;
+	i = -1;
+	while (++i && save[i] != '\n');
 	if (!save[i])
 	{
 		free(save);
@@ -57,14 +53,14 @@ char	*ft_select_after(char *save)
 	j = 0;
 	while (save[i])
 		str[j++] = save[++i];
-	str[j] = '\0';
+	str[j] = ('\0');
 	free(save);
 	return (str);
 }
 
 char	*ft_read_line(int fd, char *save)
 {
-	int		r_byte;
+	int	r_byte;
 	char	*buff;
 
 	buff = malloc(BUFFER_SIZE + 1);
@@ -79,7 +75,7 @@ char	*ft_read_line(int fd, char *save)
 			free(buff);
 			return (NULL);
 		}
-		buff[r_byte] = '\0';
+		buff[r_byte] = ('\0');
 		save = ft_strjoin(save, buff);
 	}
 	free(buff);
