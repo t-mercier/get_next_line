@@ -27,9 +27,9 @@ char	*first_(char *line)
 		free(line);
 		return (NULL);
 	}
-	i = 0;
-	while (line[i] != '\n')
-		dest[i++] = line[++i];
+	i = -1;
+	while (line[++i] != '\n')
+		dest[i] = line[i];
 	if (line[i] == '\n')
 		dest[i++] = '\n';
 	dest[i] = ('\0');
@@ -57,9 +57,9 @@ char	*next_(char *line)
 		free(line);
 		return (NULL);
 	}
-	j = 0;
-	while (line[i])
-		buff[j++] = line[++i];
+	j = -1;
+	while (line[++i])
+		buff[j] = line[i];
 	buff[j] = ('\0');
 	free(line);
 	return (buff);
