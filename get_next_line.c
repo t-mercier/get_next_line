@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_select_first(char *line)
+char	*first_(char *line)
 {
 	int	i;
 	char	*dest;
@@ -36,7 +36,7 @@ char	*ft_select_first(char *line)
 	return (dest);
 }
 
-char	*ft_select_next(char *line)
+char	*next_(char *line)
 {
 	int	i;
 	int	j;
@@ -65,7 +65,7 @@ char	*ft_select_next(char *line)
 	return (buff);
 }
 
-char	*ft_get_line(int fd, char *save, char *buff)
+char	*get_line(int fd, char *save, char *buff)
 {
 	int			byte;
 
@@ -98,10 +98,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
-	save = ft_get_line(fd, save, buff);
+	save = get_line(fd, save, buff);
 	if (!save)
 		return (NULL);
-	line = ft_select_first(save);
-	save = ft_select_next(save);
+	line = first_(save);
+	save = next_(save);
 	return (line);
 }
