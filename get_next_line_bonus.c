@@ -25,9 +25,9 @@ char	*first_(char *save)
 	line = malloc(i + 2);
 	if (!line)
 		return (NULL);
-	i = 0;
-	while (save[i] != '\n')
-		line[i++] = save[++i];
+	i = -1;
+	while (save[++i] != '\n')
+		line[i] = save[i];
 	if (save[i] == '\n')
 		line[i++] = '\n';
 	line[i] = ('\0');
@@ -41,7 +41,7 @@ char	*ft_select_after(char *save)
 	char	*str;
 
 	i = -1;
-	while (++i && save[i] != '\n');
+	while (save[++i] != '\n');
 	if (!save[i])
 	{
 		free(save);
@@ -50,9 +50,9 @@ char	*ft_select_after(char *save)
 	str = malloc(ft_strlen(save) - i + 1);
 	if (!str)
 		return (NULL);
-	j = 0;
-	while (save[i])
-		str[j++] = save[++i];
+	j = -1;
+	while (save[++i])
+		str[j] = save[i];
 	str[j] = ('\0');
 	free(save);
 	return (str);
