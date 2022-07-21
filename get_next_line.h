@@ -30,12 +30,12 @@
 # include <stddef.h>
 
 size_t	ft_strlen(char *s);
-char	*ft_strcpy(char *dst, char *src);
-char	*ft_strjoin(char *s1, char *s2);
-char	*ft_strchr(char *s, int c);
-char	*ft_select_after(char *save);
-char	*ft_select_first(char *save);
-char	*ft_read_line(int fd, char *save, char *buff);
-char	*get_next_line(int fd);
+char    *ft_strcpy(char *dst, char *src);
+char	  *ft_strjoin(char *s1, char *s2);
+char	  *ft_strchr(char *s, int c);
+char	  *next_(char *save);
+char	  *first_(char *save);
+char	  *get_line(int fd, char *save, char *buff);
+char	  *get_next_line(int fd);
 
 #endif
