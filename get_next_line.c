@@ -20,7 +20,7 @@ char	*first_(char *line)
 	i = -1;
 	if (!line[i + 1])
 		return (NULL);
-	while (++i && line[i] != '\n');
+	while (line[++i] != '\n');
 	dest = malloc(i + 2);
 	if (!dest)
 	{
