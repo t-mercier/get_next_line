@@ -12,7 +12,7 @@
 
 #include "get_next_line_bonus.h"
 
-char	*ft_select_first(char *save)
+char	*first_(char *save)
 {
 	int		i;
 	char	*line;
@@ -36,8 +36,8 @@ char	*ft_select_first(char *save)
 
 char	*ft_select_after(char *save)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	i = -1;
@@ -58,9 +58,9 @@ char	*ft_select_after(char *save)
 	return (str);
 }
 
-char	*ft_read_line(int fd, char *save)
+char	*after_(int fd, char *save)
 {
-	int	r_byte;
+	int		r_byte;
 	char	*buff;
 
 	buff = malloc(BUFFER_SIZE + 1);
@@ -89,10 +89,10 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > MAX_FD)
 		return (NULL);
-	save[fd] = ft_read_line(fd, save[fd]);
+	save[fd] = get_line(fd, save[fd]);
 	if (!save[fd])
 		return (NULL);
-	line = ft_select_first(save[fd]);
-	save[fd] = ft_select_after(save[fd]);
+	line = first_(save[fd]);
+	save[fd] = after_(save[fd]);
 	return (line);
 }
