@@ -17,11 +17,10 @@ char	*first_(char *save)
 	int		i;
 	char	*line;
 
-	i = 0;
-	if (!save[i])
+	i = -1;
+	if (!save[i + 1])
 		return (NULL);
-	while (save[i] && save[i] != '\n')
-		i++;
+	while (save[++i] != '\n');
 	line = malloc(i + 2);
 	if (!line)
 		return (NULL);
